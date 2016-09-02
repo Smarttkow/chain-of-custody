@@ -27,7 +27,7 @@ export class ChainBuilder extends EventEmitter {
         this.emit('error', data);
     }
 
-    public add(callback : (data : any, next : (data : any) => void, error : (data : any) => void) => void):ChainBuilder{
+    public then(callback : (data : any, next : (data : any) => void, error : (data : any) => void) => void):ChainBuilder{
         return this.push(new ChainItem(callback));
     }
 

@@ -3,7 +3,7 @@ import * as fs from 'fs';
 
 const builder = new ChainBuilder();
 
-builder.add((data : any, next, error) => {
+builder.then((data : any, next, error) => {
     fs.readFile('./index.ts', 'UTF-8', (err, data) => {
         if(err == null){
             next(data)
@@ -11,10 +11,10 @@ builder.add((data : any, next, error) => {
             error(err);
         }
     });
-}).add((data : any, next, error) => {
+}).then((data : any, next, error) => {
     console.log(data.toString());
     next(data);
-}).add((data : any, next, error) => {
+}).then((data : any, next, error) => {
     fs.writeFile('./clone.goofy', data, (err, data) => {
         if(err == null){
             next(data)
