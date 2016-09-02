@@ -15,7 +15,7 @@ builder.then((data, next, error) => {
     console.log(data.toString());
     next(data);
 }).then((data, next, error) => {
-    fs.writeFile('./clone.goofy?', data, (err) => {
+    fs.writeFile('./clone.goofy', data, (err) => {
         if (err == null) {
             next();
         }
