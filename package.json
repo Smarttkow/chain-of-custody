@@ -1,10 +1,12 @@
 {
   "name": "chain-of-custody",
   "version": "1.0.0",
-  "description": "This demonstrates the chain of custody design patter",
+  "description": "This demonstrates the chain of custody design pattern",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall":"typings install",
+    "start":"node index.js"
   },
   "author": "Charles Smartt",
   "license": "MIT"
