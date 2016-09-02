@@ -3,7 +3,7 @@ import * as fs from 'fs';
 
 const builder = new ChainBuilder();
 
-builder.add((data : any, next, error) => {
+builder.then((data : any, next, error) => {
     fs.readFile('./index.ts', 'UTF-8', (err, data) => {
         if(err == null){
             next(data)
@@ -11,25 +11,25 @@ builder.add((data : any, next, error) => {
             error(err);
         }
     });
-}).add((data : any, next, error) => {
+}).then((data : any, next, error) => {
     console.log(data.toString());
     next(data);
-}).add((data : any, next, error) => {
-    fs.writeFile('./clone.goofy', data, (err, data) => {
+}).then((data : any, next, error) => {
+    fs.writeFile('./clone.goofy', data, (err) => {
         if(err == null){
-            next(data)
+            next()
         } else {
             error(err);
         }
     })
 });
 
-builder.on('done', (data) => {
+builder.on('done', () => {
    console.log('we are done!');
 });
 
-builder.on('error', (data) => {
-    console.log('error');
+builder.on('error', (err) => {
+    console.log(err);
 });
 
 builder.execute();

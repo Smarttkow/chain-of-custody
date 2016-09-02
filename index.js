@@ -15,19 +15,20 @@ builder.then((data, next, error) => {
     console.log(data.toString());
     next(data);
 }).then((data, next, error) => {
-    fs.writeFile('./clone.goofy', data, (err, data) => {
+    fs.writeFile('./clone.goofy?', data, (err) => {
         if (err == null) {
-            next(data);
+            next();
         }
         else {
             error(err);
         }
     });
 });
-builder.on('done', (data) => {
+builder.on('done', () => {
     console.log('we are done!');
 });
-builder.on('error', (data) => {
-    console.log('error');
+builder.on('error', (err) => {
+    console.log('error - detail');
+    console.log(err);
 });
 builder.execute();
