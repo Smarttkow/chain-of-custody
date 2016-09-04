@@ -1,4 +1,6 @@
 # chain-of-custody
-Demonstration of the Chain of Custody design pattern for cleanly dealing with sequences that contain many snychronous and asynchronous steps.
-#Running
-The project contains both the TypeScript and transpiled JavaScript files. To use the typings, run npm install. To run the code, npm start, or node index.js.
+Chain of Custody design pattern for cleanly dealing with sequences that contain many synchronous and asynchronous steps.
+#Import
+npm install chain-of-custody
+#Executing from Source
+npm install will bring in the typings logic for the TypeScript support. TypeScript is included so that TypeScript can be used.
