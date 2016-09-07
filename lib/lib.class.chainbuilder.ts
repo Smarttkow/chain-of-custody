@@ -34,4 +34,12 @@ export class ChainBuilder extends EventEmitter {
     public execute(data?: any): void {
         this.next(data || null);
     }
+
+    constructor(firstStep?:(data : any, next : (data?:any)=> void, error: (data?: any) => void) => void) {
+        super();
+
+        if(firstStep !== null){
+            this.then(firstStep);
+        }
+    }
 }
