@@ -49,7 +49,7 @@ chainBuilder.execute();
 ###`ChainBuilder::constructor(closure : (data?:any, next:(data?:any)=>void, error:(data?:any)=>void))`
 ###`ChainBuilder::execute(data?:any):void`
 Takes any data object as an initializer, if desired.
-###'ChainBuilder::then(closure : (data?:any, next:(data?:any)=>void, error:(data?:any)=>void)):void`
+###`ChainBuilder::then(closure : (data?:any, next:(data?:any)=>void, error:(data?:any)=>void)):void`
 Next step in the chain. Must be a closure of that type.
 ###Events
 There are two events, `done` for when the sequence is complete and `error` to be called only on sequence failure.
