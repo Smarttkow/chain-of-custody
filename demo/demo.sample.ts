@@ -1,5 +1,6 @@
 import {ChainBuilder} from './../lib';
 import * as fs from 'fs';
+import {ICaughtException} from "../lib/lib.interface.caughtexception";
 
 let chainBuilder = new ChainBuilder((data, next, error) => {
     fs.readFile(`${__dirname}/test.json`, 'UTF-8', (err, data) => {
@@ -21,6 +22,10 @@ let chainBuilder = new ChainBuilder((data, next, error) => {
             next();
         }
     });
+});
+
+chainBuilder.on('exception', (err : ICaughtException) => {
+    console.log(err);
 });
 
 chainBuilder.on('error', (err)=>{

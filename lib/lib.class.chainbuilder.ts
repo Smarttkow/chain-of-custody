@@ -1,6 +1,10 @@
-import {ChainItem} from './lib.class.chainitem'
+import {ChainItem} from './lib.class.chainitem';
+import {ICaughtException} from './lib.interface.caughtexception';
 import {EventEmitter} from 'events';
 
+/**
+ * Create a chain of callback methods.
+ */
 export class ChainBuilder extends EventEmitter {
     public stack: ChainItem[] = [];
 
@@ -14,10 +18,17 @@ export class ChainBuilder extends EventEmitter {
 
         if (self.stack.length > 0) {
             self.stack.shift().next(data, (data?: any) => {
-                self.next(data);
+                try {
+                    self.next(data);
+                } catch (e) {
+                    this.emit('exception', {
+                        exception: e,
+                        data: data
+                    } as ICaughtException);
+                }
             }, (data?: any) => {
                 self.error(data)
-            })
+            });
         } else {
             this.emit('done', data);
         }
